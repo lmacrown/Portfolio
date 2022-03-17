@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="callSettersOnNulls" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="TestDto" type="com.test.dto.TestDto"/>
+        <typeAlias alias="AdminLoginDto" type="com.test.dto.AdminLoginDto"/>
+        <typeAlias alias="UserLoginDto" type="com.test.dto.UserLoginDto"/>
+        <typeAlias alias="BannerDto" type="com.test.dto.BannerDto"/>
+        <typeAlias alias="PostDto" type="com.test.dto.PostDto"/>
+        <typeAlias alias="CategoryDto" type="com.test.dto.CategoryDto"/>
+        <typeAlias alias="UserDto" type="com.test.dto.UserDto"/>
+        <typeAlias alias="UserInsertDto" type="com.test.dto.UserInsertDto"/>
+        <typeAlias alias="UserRegisterDto" type="com.test.dto.UserRegisterDto"/>
+    </typeAliases>
+</configuration>

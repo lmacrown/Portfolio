@@ -1,0 +1,75 @@
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- userInfo Table Create SQL
+CREATE TABLE userInfo
+(
+    `userNo`       INT            NOT NULL    AUTO_INCREMENT COMMENT '사용자 고유번호', 
+    `userNick`     VARCHAR(45)    NULL        COMMENT '사용자 닉네임', 
+    `userId`       VARCHAR(45)    NULL        COMMENT '사용자 아이디', 
+    `userPw`       VARCHAR(45)    NULL        COMMENT '사용자 비밀번호', 
+    `userEmail`    VARCHAR(45)    NULL        COMMENT '사용자 이메일', 
+    `userRegDate`  DATE           NULL        COMMENT '가입일자', 
+    `postNo`       INT            NULL        COMMENT '게시글 고유번호', 
+    `follower`     INT            NULL        COMMENT '팔로워', 
+    `bookmark`     INT            NULL        COMMENT '북마크', 
+    CONSTRAINT  PRIMARY KEY (userNo)
+);
+
+
+-- userInfo Table Create SQL
+CREATE TABLE postInfo
+(
+    `postNo`        INT              NOT NULL    AUTO_INCREMENT COMMENT '게시글 고유번호', 
+    `userId`        VARCHAR(45)      NULL        COMMENT '사용자 아이디', 
+    `postContents`  VARCHAR(3000)    NULL        COMMENT '게시글 내용', 
+    `postTitle`     VARCHAR(100)     NULL        COMMENT '게시글 제목', 
+    `postImg`       VARCHAR(5000)    NULL        COMMENT '게시글 이미지', 
+    `countClick`    INT              NULL        COMMENT '게시글 클릭수', 
+    `postRegDate`   DATETIME         NULL        COMMENT '게시글 생성일', 
+    `bookmark`      INT              NULL        COMMENT '북마크', 
+    CONSTRAINT  PRIMARY KEY (postNo)
+);
+
+ALTER TABLE postInfo
+    ADD CONSTRAINT FK_postInfo_userId_userInfo_userId FOREIGN KEY (userId, postNo)
+        REFERENCES userInfo (userId, postNo) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- userInfo Table Create SQL
+CREATE TABLE inquiry
+(
+    `inqNo`          INT              NOT NULL    AUTO_INCREMENT COMMENT '문의 고유 번호', 
+    `userNo`         INT              NULL        COMMENT '사용자 고유번호', 
+    `inqQuestion`    VARCHAR(3000)    NULL        COMMENT '문의 내용', 
+    `inqAnswer`      VARCHAR(3000)    NULL        COMMENT '문의 답변', 
+    `inqRegDate`     DATE             NULL        COMMENT '문의 생성 날짜', 
+    `inqTitle`       VARCHAR(100)     NULL        COMMENT '문의 제목', 
+    `inqReplyEmail`  VARCHAR(45)      NULL        COMMENT '회신이메일', 
+    CONSTRAINT  PRIMARY KEY (inqNo)
+);
+
+ALTER TABLE inquiry
+    ADD CONSTRAINT FK_inquiry_userNo_userInfo_userNo FOREIGN KEY (userNo)
+        REFERENCES userInfo (userNo) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- userInfo Table Create SQL
+CREATE TABLE banner
+(
+    `banNo`       INT              NOT NULL    AUTO_INCREMENT COMMENT '배너 고유번호', 
+    `banImg`      VARCHAR(5000)    NULL        COMMENT '배너 이미지', 
+    `banCount`    INT              NULL        COMMENT '광고 클릭수', 
+    `banRegDate`  DATE             NULL        COMMENT '배너 생성 일자', 
+    `banTitle`    VARCHAR(100)     NULL        COMMENT '배너 제목', 
+    `banContent`  VARCHAR(3000)    NULL        COMMENT '배너 내용', 
+    CONSTRAINT  PRIMARY KEY (banNo)
+);
+
+
+-- userInfo Table Create SQL
+CREATE TABLE category
+(
+    `categoryNo`    INT             NOT NULL    AUTO_INCREMENT COMMENT '카테고리 고유번호', 
+    `categoryName`  VARCHAR(100)    NULL        COMMENT '카테고리 이름', 
+    CONSTRAINT  PRIMARY KEY (categoryNo)
+);

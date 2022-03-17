@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.UserMapper">
+    <insert id="insertUser">
+        insert into userinfo (userNick, userId, userEmail,userPw, userRegDate)
+        VALUES( #{userDto.userNick}, #{userDto.userId}, #{userDto.userEmail},#{userDto.userPw}, #{userDto.userRegDate})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from userinfo where userNo = #{userNo}
+    </delete>
+
+    <select id="readBasicDataList" resultType="UserDto">
+        select * from userinfo
+    </select>
+    <select id="readBasicDataByUserNo" resultType="UserDto">
+        select * from userinfo where userNo = #{userNo}
+    </select>
+    <!--<update id="updateUser">
+        update user
+        set userNick=#{updateDto.userNick}, userId=#{updateDto.userId}, userPw=#{updateDto.userPw}, userEmail=#{updateDto.userEmail}, userRegDate=#{updateDto.userRegDate}
+        where userNo = #{userNo}
+    </update>-->
+    <!--<insert id="insertUser">
+        insert into userinfo (userNick, userEmail, userId, userPw, userRegDate)
+        VALUES( #{userNick}, #{userEmail}, #{userId}, #{userPw}, #{userRegDate})
+    </insert>-->
+
+</mapper>

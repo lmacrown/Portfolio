@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.CategoryMapper">
+    <insert id="insertCategory">
+        insert into category(categoryImg, categoryCount, categoryRegDate, categoryTitle, categoryContent)
+        VALUES(#{categoryDto.categoryImg}, #{categoryDto.categoryCount}, #{categoryDto.categoryRegDate}, #{categoryDto.categoryTitle}, #{categoryDto.categoryContent})
+    </insert>
+
+    <delete id="deleteCategory">
+        delete from category where categoryNo = #{categoryNo}
+    </delete>
+
+    <select id="readBasicDataList" resultType="CategoryDto">
+        select * from category
+    </select>
+    <select id="readBasicDataByCategoryNo" resultType="CategoryDto">
+        select * from category where categoryNo = #{categoryNo}
+    </select>
+    <update id="updateCategory">
+        update category
+        set categoryImg=#{updateDto.categoryImg}, categoryRegDate=#{updateDto.categoryRegDate}, categoryTitle=#{updateDto.categoryTitle}, categoryContent=#{updateDto.categoryContent}
+        where categoryNo = #{categoryNo}
+    </update>
+</mapper>

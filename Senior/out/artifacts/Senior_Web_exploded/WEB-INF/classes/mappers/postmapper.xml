@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.PostMapper">
+    <insert id="insertPost">
+        insert into postinfo (postContents, postTitle,postImg, postRegDate, postCount)
+        VALUES(#{postDto.postContents},  #{postDto.postTitle}, #{postDto.postImg}, #{postDto.postRegDate}, #{postDto.postCount} )
+    </insert>
+
+    <delete id="deletePost">
+        delete from postinfo where postNo = #{postNo}
+    </delete>
+
+    <select id="readBasicDataList" resultType="PostDto">
+        select * from postinfo
+    </select>
+    <select id="readBasicDataByPostNo" resultType="PostDto">
+        select * from postinfo where postNo = #{postNo}
+    </select>
+    <update id="updatePost">
+        update postinfo
+        set postImg=#{updateDto.postImg}, postRegDate=#{updateDto.postRegDate}, postTitle=#{updateDto.postTitle}, postContent=#{updateDto.postContent}
+        where postNo = #{postNo}
+    </update>
+</mapper>
